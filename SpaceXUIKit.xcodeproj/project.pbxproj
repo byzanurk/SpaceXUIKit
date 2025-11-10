@@ -14,7 +14,7 @@
 		D8DB816C2EC1D8550095A8D6 /* Exceptions for "SpaceXUIKit" folder in "SpaceXUIKit" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				SupportingFiles/Info.plist,
 			);
 			target = D8DB81592EC1D8530095A8D6 /* SpaceXUIKit */;
 		};
