@@ -8,6 +8,10 @@
 import Foundation
 
 struct SpaceXResponseModel: Codable {
+    let launches: [Launch]?
+}
+
+struct Launch: Codable {
     let links: Links
     let details: String?
     let name: String?

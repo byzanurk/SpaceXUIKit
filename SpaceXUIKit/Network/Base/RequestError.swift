@@ -42,7 +42,7 @@ public enum RequestError: Error, Equatable {
             return code
         case .unexpectedStatusCode:
             return nil
-        case .unknow(description: let description, code: let code):
+        case .unknow(_, code: let code):
             return code
         }
     }

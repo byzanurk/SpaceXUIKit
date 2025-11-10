@@ -10,7 +10,6 @@ import Foundation
 enum Path: String {
     case launches
     
-    
     var path: String {
         switch self {
         case .launches:

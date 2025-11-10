@@ -15,10 +15,11 @@ final class Coordinator: CoordinatorProtocol {
     var children: [CoordinatorProtocol] = []
     
     func start() {
-        // builderla vc baslat
+        let vc = AllLaunchesViewBuilder.build(coordinator: self)
+        navigationController?.setViewControllers([vc], animated: true)
     }
 
     func eventOccurred(with viewController: UIViewController) {
-        // push vc
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }
