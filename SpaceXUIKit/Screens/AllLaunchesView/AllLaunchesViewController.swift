@@ -17,9 +17,7 @@ protocol AllLaunchesViewProtocol {
 
 final class AllLaunchesViewController: UIViewController {
     
-    var router: AllLaunchesViewRouterProtocol?
     var presenter: AllLaunchesViewPresenterProtocol?
-    var viewModel: AllLaunchesViewModelProtocol?
 
     @IBOutlet private weak var collectionView: UICollectionView!
     
@@ -79,19 +77,21 @@ extension AllLaunchesViewController: AllLaunchesViewProtocol {
 
 extension AllLaunchesViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel?.launches.count ?? 0
+        return presenter?.allLaunches?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LaunchCollectionViewCell", for: indexPath) as! LaunchCollectionViewCell
-        let launch = viewModel?.launches[indexPath.item]
+        let launch = presenter?.allLaunches?[indexPath.item]
         cell.configure(model: launch)
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        debugPrint("item selected")
+        if let selectedLaunch = presenter?.allLaunches?[indexPath.item] {
+            presenter?.goToDetail(launch: selectedLaunch)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

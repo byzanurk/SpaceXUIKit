@@ -8,32 +8,36 @@
 import Foundation
 
 protocol AllLaunchesViewPresenterProtocol {
+    var allLaunches: [Launch]? { get set }
     func loading()
     func finished()
     func handleError(error: String)
     func handleLaunches(launches: [Launch])
     func fetchLaunches()
+    func goToDetail(launch: Launch)
 }
 
-final class AllLaunchesViewPresenter {
-    
+final class AllLaunchesViewPresenter: AllLaunchesViewPresenterProtocol {
+
+        
+    var allLaunches: [Launch]?
+
     let interactor: AllLaunchesViewInteractorProtocol
+    let router: AllLaunchesViewRouterProtocol
     let view: AllLaunchesViewProtocol
-    var viewModel: AllLaunchesViewModelProtocol?
     
     init(interactor: AllLaunchesViewInteractorProtocol,
          view: AllLaunchesViewProtocol,
-         viewModel: AllLaunchesViewModelProtocol) {
+         router: AllLaunchesViewRouterProtocol) {
         
         self.interactor = interactor
         self.view = view
-        self.viewModel = viewModel
-        self.viewModel?.delegate = self
+        self.router = router
     }
 }
 
-extension AllLaunchesViewPresenter: AllLaunchesViewPresenterProtocol {
-    
+extension AllLaunchesViewPresenter {
+        
     func fetchLaunches() {
         interactor.fetchLaunches()
     }
@@ -51,19 +55,12 @@ extension AllLaunchesViewPresenter: AllLaunchesViewPresenterProtocol {
     }
     
     func handleLaunches(launches: [Launch]) {
-        viewModel?.launches = launches
+        self.allLaunches = launches
         view.launchesOutput()
     }
-}
-
-extension AllLaunchesViewPresenter: AllLaunchesViewModelOutput {
-    func didUpdateLaunches() {
-        DispatchQueue.main.async {
-            self.view.updateUI()
-        }
-    }
     
-    func showError(message: String) {
-        debugPrint("Error: \(message)")
+    func goToDetail(launch: Launch) {
+        let vc = LaunchDetailViewBuilder.build(coordinator: router.coordinator, launch: launch)
+        self.router.navigate(viewController: vc)
     }
 }

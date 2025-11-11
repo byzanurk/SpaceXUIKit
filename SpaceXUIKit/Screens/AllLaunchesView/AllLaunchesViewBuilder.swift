@@ -12,17 +12,14 @@ final class AllLaunchesViewBuilder {
     static func build(coordinator: Coordinator) -> AllLaunchesViewController {
         
         let viewController = AllLaunchesViewController()
-        let viewModel = AllLaunchesViewModel()
         let httpClient = HttpClient()
         let interactor = AllLaunchesViewInteractor(httpClient: httpClient)
         let router = AllLaunchesViewRouter(coordinator: coordinator)
         let presenter = AllLaunchesViewPresenter(interactor: interactor,
                                                  view: viewController,
-                                                 viewModel: viewModel)
+                                                 router: router)
         
-        viewController.router = router
         viewController.presenter = presenter
-        viewController.viewModel = viewModel
         interactor.presenter = presenter
         
         return viewController

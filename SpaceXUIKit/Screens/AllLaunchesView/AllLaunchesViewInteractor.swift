@@ -40,5 +40,4 @@ extension AllLaunchesViewInteractor: AllLaunchesViewInteractorProtocol {
             }
         }
     }
-    
 }
