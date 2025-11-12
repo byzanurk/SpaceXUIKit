@@ -15,10 +15,11 @@ protocol AllLaunchesViewPresenterProtocol {
     func handleLaunches(launches: [Launch])
     func fetchLaunches()
     func goToDetail(launch: Launch)
+    func searchLaunches(query: String)
+    func sortLaunches(by option: Int)
 }
 
 final class AllLaunchesViewPresenter: AllLaunchesViewPresenterProtocol {
-
         
     var allLaunches: [Launch]?
 
@@ -42,6 +43,14 @@ extension AllLaunchesViewPresenter {
         interactor.fetchLaunches()
     }
     
+    func searchLaunches(query: String) {
+        interactor.searchLaunches(query: query)
+    }
+    
+    func sortLaunches(by option: Int) {
+        interactor.sortLaunches(by: option)
+    }
+    
     func loading() {
         view.loading()
     }
@@ -63,4 +72,5 @@ extension AllLaunchesViewPresenter {
         let vc = LaunchDetailViewBuilder.build(coordinator: router.coordinator, launch: launch)
         self.router.navigate(viewController: vc)
     }
+
 }

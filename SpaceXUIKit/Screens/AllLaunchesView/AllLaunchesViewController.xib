@@ -11,6 +11,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AllLaunchesViewController" customModule="SpaceXUIKit" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="Tvf-Kx-GZv" id="g9u-tj-dvp"/>
+                <outlet property="searchBar" destination="bD2-fo-D8o" id="Bre-uR-9Yb"/>
+                <outlet property="sortButton" destination="1tY-Tl-Z01" id="RuX-nO-8Nr"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,8 +21,27 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lm6-Ya-Uc9">
+                    <rect key="frame" x="4" y="118" width="385" height="64"/>
+                    <subviews>
+                        <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="bD2-fo-D8o">
+                            <rect key="frame" x="0.0" y="0.0" width="329" height="64"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="Obp-B9-sNO"/>
+                            </connections>
+                        </searchBar>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1tY-Tl-Z01">
+                            <rect key="frame" x="329" y="0.0" width="56" height="64"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="gray">
+                                <color key="baseBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </buttonConfiguration>
+                        </button>
+                    </subviews>
+                </stackView>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Tvf-Kx-GZv">
-                    <rect key="frame" x="0.0" y="118" width="393" height="734"/>
+                    <rect key="frame" x="0.0" y="182" width="393" height="670"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="0Pi-we-Or1">
                         <size key="itemSize" width="128" height="128"/>
@@ -33,10 +54,13 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="Lm6-Ya-Uc9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="4" id="2m1-Xg-huI"/>
                 <constraint firstAttribute="bottom" secondItem="Tvf-Kx-GZv" secondAttribute="bottom" id="9B0-rY-ccJ"/>
-                <constraint firstItem="Tvf-Kx-GZv" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="M5w-hy-YUO"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Lm6-Ya-Uc9" secondAttribute="trailing" constant="4" id="F12-kq-b35"/>
                 <constraint firstItem="Tvf-Kx-GZv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="XTf-wq-Z5a"/>
                 <constraint firstItem="Tvf-Kx-GZv" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="j5f-Wx-LLr"/>
+                <constraint firstItem="Tvf-Kx-GZv" firstAttribute="top" secondItem="Lm6-Ya-Uc9" secondAttribute="bottom" id="twC-wC-m7T"/>
+                <constraint firstItem="Lm6-Ya-Uc9" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="zrK-Zy-xjl"/>
             </constraints>
             <point key="canvasLocation" x="-103.05343511450381" y="109.85915492957747"/>
         </view>

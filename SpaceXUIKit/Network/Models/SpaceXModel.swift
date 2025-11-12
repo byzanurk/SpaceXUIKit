@@ -15,6 +15,12 @@ struct Launch: Codable {
     let links: Links
     let details: String?
     let name: String?
+    let dateUTC: String
+    
+    enum CodingKeys: String, CodingKey {
+        case links, details, name
+        case dateUTC = "date_utc"
+    }
 }
 
 struct Links:Codable {
